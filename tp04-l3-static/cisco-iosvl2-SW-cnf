@@ -1,0 +1,36 @@
+// create vlans 10,20
+Switch(config)# vlan 10
+Switch(config-vlan)# name BLUE_NET
+Switch(config)# vlan 20
+Switch(config-vlan)# name RED_NET
+
+// assign nodes 1,2 to vlan 10
+Switch(config)# interface GigabitEthernet0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10
+Switch(config-if)# interface GigabitEthernet0/2
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10
+
+// assign hosts 3,4 to vlan 20
+Switch(config)# interface GigabitEthernet0/3
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 20
+Switch(config)# interface GigabitEthernet1/0
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 20
+
+/*
+ configure trunk on link to the router
+ Gi0/0 port
+*/
+
+Switch(config)# interface GigabitEthernet0/0
+// force usage of 802.1Q tagging standanrd
+Switch(config-if)# switchport trunk encapsulation dot1q
+
+// lock the port into trunking mode
+Switch(config-if)# switchport mode trunk
+
+// (optional) restrict the trunk to only vlans 10,20
+Switch(config-if)# switchport trunk allowed vlan 10,20

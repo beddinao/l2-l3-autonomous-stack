@@ -1,0 +1,13 @@
+// turn on the port 
+Router(config)# interface GigabitEthernet0/0
+Router(config-if)# no shutdown
+
+// Create the gateway for vlan 10
+Router(config)# interface GigabitEthernet0/1.10
+Router(config-subif)# encapsulation dot1Q 10
+Router(config-subif)# ip address 10.0.10.254 255.255.255.0
+
+// Create the gateway for vlan 20
+Router(config)# interface GigabitEthernet0/1.20
+Router(config-subif)# encapsulation dot1Q 20
+Router(config-subif)# ip address 10.0.20.254 255.255.255.0
