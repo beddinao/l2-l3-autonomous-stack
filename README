@@ -1,0 +1,41 @@
+
+L2-L3-AUTONOMOUS-STACK
+Moving toward absolute network autonomy.
+
+OVERVIEW
+--------
+A multi-topology laboratory exploring core networking architectures, progressing from Layer 2 switching and 802.1Q trunking to highly available OSPF routing, autonomous convergence, and exterior BGP peering between autonomous systems.
+
+ENVIRONMENT & RESOURCES
+-----------------------
+This project was developed, simulated, and verified exclusively within GNS3. The underlying infrastructure relies on Cisco virtual appliances. The specific firmware images utilized are:
+
+  - vios-adventerprisek9-m.spa.159-3.m6.qcow2 (Cisco IOSv Router)
+  - vios_l2-adventerprisek9-m.ssa.high_iron_20200929.qcow2 (Cisco IOSvL2 Switch)
+  - IOSv_startup_config.img
+
+Resource files, firmware references, and Docker templates are stored in the 'cisco-resources', 'gns3-resources', and 'gns3-docker-templates' directories.
+
+DIRECTORY STRUCTURE & TOPOLOGY MAP
+----------------------------------
+The repository is divided into progressively complex network topologies. Inside each topology directory, there is detailed documentations, raw configuration snippets, and a 'tp0X.gns3project' file. This project file can be imported directly into GNS3 to instantly replicate the exact environment and hardware layout.
+
+  tp01-direct-link   : Topology 01 - Foundation of Layer 2/3 adjacency on a single wire.
+  tp02-l2-switch     : Topology 02 - Layer 2 switching and dynamic MAC address learning.
+  tp03-vlan-trunk    : Topology 03 - Logical segmentation using Virtual LANs and 802.1Q trunking.
+  tp04-l3-static     : Topology 04 - Inter-VLAN routing via Router-on-a-Stick (ROAS).
+  tp05-ospf-underlay : Topology 05 - Dynamic routing, OSPF Area 0, and autonomous fault convergence.
+  tp06-bgp-doors-p2  : Topology 06 - Exterior Gateway Protocols and BGP autonomous system peering.
+  tp07-bgp-doors-p3  : Topology 07 - Advanced exterior BGP architectures and edge routing integration.
+
+Note: Topologies 06 and 07 cover the exterior Border Gateway Protocol (BGP) phases of the project and build directly upon the OSPF backbone established in Topology 05 to route traffic between distinct autonomous systems.
+
+CONFIGURATION NAMING CONVENTIONS
+--------------------------------
+To maintain consistency and provide a clear source of truth for the network state, configuration files inside each topology directory follow a strict naming convention:
+
+  - hX-eth0-cnf          : The static network configuration applied to interface eth0 on Alpine host X (e.g., h1-eth0-cnf).
+  - cisco-iosv-RTX-cnf   : The exact sequence of CLI commands executed on Cisco IOSv Router X.
+  - cisco-iosvl2-SWX-cnf : The exact sequence of CLI commands executed on Cisco IOSvL2 Switch X.
+
+All Cisco execution commands documented in these files were applied sequentially after logging into the respective nodes via a custom console established using xfce4-terminal.
