@@ -1,8 +1,8 @@
-# *`Topology 04: Inter-VLAN Routing (ROAS)`*
+## *`Topology 04: Inter-VLAN Routing (ROAS)`*
 
 <img width="1325" height="782" alt="tp04-screen0" src="https://github.com/user-attachments/assets/4c73f0a1-9cd5-4f81-a075-ba5efaeba65a" />
 
-### OVERVIEW
+#### OVERVIEW
 ```text
 This topology bridges the gap between isolated Layer 2 broadcast domains by introducing a Layer 3 
 routing engine. It implements the classic "Router-on-a-Stick" (ROAS) architecture, demonstrating 
@@ -10,7 +10,7 @@ how a single physical router interface can be virtually partitioned to act as th
 for multiple distinct subnets, enabling inter-VLAN communication.
 ```
 
-### PART 01, INFRASTRUCTURE & TOPOLOGY OVERVIEW
+#### PART 01, INFRASTRUCTURE and TOPOLOGY OVERVIEW
 
 ```text
 - Upgrades the isolated Layer 2 architecture by introducing a CiscoIOSv Router to the core.
@@ -19,7 +19,7 @@ for multiple distinct subnets, enabling inter-VLAN communication.
   pointing to the router's virtual interfaces, giving them a path to unknown networks.
 ```
 
-### PART 02, SWITCH TRUNKING & HOST PROVISIONING
+#### PART 02, SWITCH TRUNKING and HOST PROVISIONING
 
 ```text
 - The switch configuration retains the VLAN 10 (BLUE_NET) and VLAN 20 (RED_NET) access boundaries 
@@ -29,7 +29,7 @@ for multiple distinct subnets, enabling inter-VLAN communication.
   the routing plane, allowing the router to distinguish which broadcast domain the traffic originated from.
 ```
 
-### PART 03, ROUTER VIRTUALIZATION (SUBINTERFACES)
+#### PART 03, ROUTER VIRTUALIZATION (SUBINTERFACES)
 
 ```text
 - To route multiple networks over a single physical wire, the router's main hardware interface 
@@ -44,7 +44,7 @@ for multiple distinct subnets, enabling inter-VLAN communication.
 <img width="1054" height="388" alt="tp04-router-subifc-cnf" src="https://github.com/user-attachments/assets/7082ed0a-6285-4090-a2ac-8d588f11e2d0" />
 
 
-### PART 04, DATA PLANE VALIDATION & TAG SWAPPING
+#### PART 04, DATA PLANE VALIDATION and TAG SWAPPING
 
 ```text
 - Validates successful inter-VLAN routing: host-1 (10.0.10.1 in BLUE_NET) executes a successful 
