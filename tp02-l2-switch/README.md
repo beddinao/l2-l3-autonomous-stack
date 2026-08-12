@@ -1,9 +1,9 @@
-# *`Topology 02: Layer 2 Switching`*
+## *`Topology 02: Layer 2 Switching`*
 
 <img width="982" height="412" alt="tp02-screenshot01" src="https://github.com/user-attachments/assets/45466700-c437-4706-ba76-67b26411c096" />
 
 
-### OVERVIEW
+#### OVERVIEW
 ```text
 This topology introduces intermediate Layer 2 infrastructure. By integrating a managed Cisco switch, 
 the network expands from a simple point-to-point link into a scalable Local Area Network (LAN). 
@@ -11,7 +11,7 @@ The focus shifts to understanding how switches learn hardware addresses and inte
 frames within a single broadcast domain, eliminating the need for strict physical adjacency.
 ```
 
-### PART 01, SWITCHED INFRASTRUCTURE (GNS3)
+#### PART 01, SWITCHED INFRASTRUCTURE (GNS3)
 
 ```text
 - Deploys three isolated Alpine Linux container hosts (host-1, host-2, host-3).
@@ -19,7 +19,7 @@ frames within a single broadcast domain, eliminating the need for strict physica
 - Connects all three hosts to the switch, effectively placing them within the same physical broadcast domain.
 ```
 
-### PART 02, INTERFACE CONFIGURATION (STATIC IPS)
+#### PART 02, INTERFACE CONFIGURATION (STATIC IPS)
 
 ```text
 - Configures static IPv4 addressing using the standard networking interfaces configuration file.
@@ -35,7 +35,7 @@ frames within a single broadcast domain, eliminating the need for strict physica
 <img width="788" height="185" alt="tp02-ifc-confs" src="https://github.com/user-attachments/assets/b88b80f2-8718-4790-a4fa-acdda8611693" />
 
 
-### PART 03, INITIAL SWITCH STATE (EMPTY MAC TABLE)
+#### PART 03, INITIAL SWITCH STATE (EMPTY MAC TABLE)
 
 ```text
 - Examines the core function of a Layer 2 switch: dynamic hardware address learning.
@@ -46,7 +46,7 @@ frames within a single broadcast domain, eliminating the need for strict physica
 <img width="1008" height="501" alt="tp02-switch-mtable0" src="https://github.com/user-attachments/assets/36ada0a6-b64b-443f-8ab3-da38c504847d" />
 
 
-### PART 04, TRAFFIC GENERATION & CONNECTIVITY (ICMP / ARP)
+#### PART 04, TRAFFIC GENERATION and CONNECTIVITY (ICMP / ARP)
 
 ```text
 - Initiates communication across the switch to trigger hardware address resolution and dynamic learning.
@@ -65,7 +65,7 @@ frames within a single broadcast domain, eliminating the need for strict physica
 <img width="942" height="376" alt="tp02-capture" src="https://github.com/user-attachments/assets/2ec7901c-5263-416c-ab48-90ffca547c8b" />
 
 
-### PART 05, SWITCH LEARNING & HOST ARP CACHE
+#### PART 05, SWITCH LEARNING and HOST ARP CACHE
 
 ```text
 - Validates the aftermath of the network traffic on both the switch and the endpoint.
