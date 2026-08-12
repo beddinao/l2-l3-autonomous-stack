@@ -1,0 +1,30 @@
+// create a loopback ifc to serve as a stable router id (RID)
+Router(config)# interface Loopback0
+Router(config-if)# ip address 1.1.1.1 255.255.255.255
+
+// configuring the interface connecting to R2
+Router(config)# interface GigabitEthernet0/1
+Router(config-if)# ip address 10.0.1.1 255.255.255.252
+Router(config-if)# no shutdown
+
+// config ifc to R3
+Router(config)# interface GigabitEthernet0/2
+Router(config-if)# ip address 10.0.0.1 255.255.255.252
+Router(config-if)# no shutdown
+
+/*
+	OSPF configurations
+*/
+
+// engine init as pid 1
+Router(config)# router ospf 1
+// ospf RID
+Router(config-router)# network-id 1.1.1.1
+// activate ospf on Gi0/1 and inject the 10.0.1.0/30 net into area 0
+Router(config-router)# network 10.0.1.0 0.0.0.3 area 0
+// same for 10.0.0.0/30
+Router(config-router)# network 10.0.0.0 0.0.0.3 area 0
+
+
+
+
