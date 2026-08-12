@@ -1,11 +1,10 @@
-# *`Topology 03: Virtual LANs & 802.1Q Trunking`*
+## *`Topology 03: Virtual LANs and 802.1Q Trunking`*
 
 
 <img width="929" height="566" alt="tp03-screnshot0" src="https://github.com/user-attachments/assets/65267aea-5edc-4d60-807e-da1902d50d5f" />
 
 
-
-### OVERVIEW
+#### OVERVIEW
 ```text
 This topology transitions from a flat network into a logically segmented architecture. 
 By implementing Virtual Local Area Networks (VLANs), a single physical switching infrastructure 
@@ -13,7 +12,7 @@ is partitioned into multiple, completely isolated broadcast domains. It introduc
 standard to multiplex these distinct networks across a single physical wire (a Trunk).
 ```
 
-### PART 01, INFRASTRUCTURE & VLAN PROVISIONING
+#### PART 01, INFRASTRUCTURE and VLAN PROVISIONING
 
 ```text
 - Deploys four end-hosts across two separate geographic nodes, connected by two Cisco switches.
@@ -23,7 +22,7 @@ standard to multiplex these distinct networks across a single physical wire (a T
 - Host-3 and Host-4 belong to VLAN 20 (10.0.20.0/24).
 ```
 
-### PART 02, ACCESS PORTS & IP ADDRESSING
+#### PART 02, ACCESS PORTS and IP ADDRESSING
 
 ```text
 - Configures static IPv4 addressing on all four Alpine containers.
@@ -34,7 +33,7 @@ standard to multiplex these distinct networks across a single physical wire (a T
   keeping the endpoints completely unaware of the virtualization layer.
 ```
 
-### PART 03, TRUNK LINK CONFIGURATION (802.1Q)
+#### PART 03, TRUNK LINK CONFIGURATION (802.1Q)
 
 ```text
 - Configures the central link (Gi0/0 to Gi0/0) as a 802.1Q Trunk.
@@ -44,7 +43,7 @@ standard to multiplex these distinct networks across a single physical wire (a T
   preventing unauthorized broadcast domains from traversing the core link.
 ```
 
-### PART 04, VLAN 10 DATA PLANE VALIDATION
+#### PART 04, VLAN 10 DATA PLANE VALIDATION
 
 ```text
 - Validates intra-VLAN reachability: host-1 (10.0.10.1) successfully pings host-2 (10.0.10.2).
@@ -64,7 +63,7 @@ standard to multiplex these distinct networks across a single physical wire (a T
 <img width="940" height="373" alt="tp03-vlan10-capture" src="https://github.com/user-attachments/assets/1e096d18-a8ac-4a0b-a43a-cfc4be452695" />
 
 
-### PART 05, VLAN 20 DATA PLANE VALIDATION
+#### PART 05, VLAN 20 DATA PLANE VALIDATION
 
 ```text
 - Mirrors the validation for the second broadcast domain.
