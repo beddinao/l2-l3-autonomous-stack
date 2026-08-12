@@ -1,17 +1,17 @@
 
-# *`Topology 01: Direct Link`*
+## *`Topology 01: Direct Link`*
 
 <img width="1271" height="629" alt="tp01-screen2" src="https://github.com/user-attachments/assets/22453bdd-abed-4a6d-90e7-651e29cce48d" />
 
 
-### OVERVIEW
+#### OVERVIEW
 ```text
 A foundational point-to-point network architecture. This topology strips away intermediary infrastructure 
 (switches and routers) to observe raw Layer 2 and Layer 3 communication mechanics on a single wire. 
 It establishes the baseline for static IP configuration and protocol-level host discovery.
 ```
 
-### PART 01, BASELINE INFRASTRUCTURE (GNS3)
+#### PART 01, BASELINE INFRASTRUCTURE (GNS3)
 
 ```text
 - Deploys two isolated Alpine Linux container hosts (host-1 and host-2).
@@ -19,7 +19,7 @@ It establishes the baseline for static IP configuration and protocol-level host 
 - Establishes absolute physical (Layer 1) adjacency with no switching hardware in the data path.
 ```
 
-### PART 02, INTERFACE CONFIGURATION (STATIC IPS)
+#### PART 02, INTERFACE CONFIGURATION (STATIC IPS)
 
 ```text
 - Configures static IPv4 addressing using the standard networking interfaces configuration file.
@@ -32,7 +32,7 @@ It establishes the baseline for static IP configuration and protocol-level host 
 <img width="790" height="179" alt="tp01-ifc-configs" src="https://github.com/user-attachments/assets/43dc6a09-6913-453b-9666-a71124eaf1c0" />
 
 
-### PART 03, HOST DISCOVERY (ARP)
+#### PART 03, HOST DISCOVERY (ARP)
 
 ```text
 - Before standard IP packets can be transferred, hosts must resolve Layer 2 hardware addresses.
@@ -45,7 +45,7 @@ It establishes the baseline for static IP configuration and protocol-level host 
 <img width="790" height="179" alt="tp01-arp-success" src="https://github.com/user-attachments/assets/0989b43d-a278-4969-945b-058f722a11e1" />
 
 
-### PART 04, CONNECTIVITY VALIDATION (ICMP)
+#### PART 04, CONNECTIVITY VALIDATION (ICMP)
 
 ```text
 - Validates bidirectional Layer 3 routing and reachability across the direct wire.
