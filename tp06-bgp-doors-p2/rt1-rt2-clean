@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ip link delete vxlan10
+ip link delete br0

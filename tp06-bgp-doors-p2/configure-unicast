@@ -1,0 +1,49 @@
+#!/bin/bash
+
+host1=$(docker ps|grep host_beddinao-1|awk '{print $NF}')
+host2=$(docker ps|grep host_beddinao-2|awk '{print $NF}')
+router1=$(docker ps|grep router_beddinao-1|awk '{print $NF}')
+router2=$(docker ps|grep router_beddinao-2|awk '{print $NF}')
+
+
+if [[ -z $host1 || -z $host2 || -z $router1 || -z $router2 ]]; then
+	echo "start the templates!"
+	exit 1
+fi
+
+echo "got:"
+echo "host_beddinao-1: $host1"
+echo "host_beddinao-2: $host2"
+echo "router_beddinao-1: $router1"
+echo "router_beddinao-2: $router2"
+
+echo -e "\ncopying scripts:"
+
+docker cp h1-eth0-st-script $host1:/
+docker cp h2-eth0-st-script $host2:/
+docker cp rt1-rt2-clean $router1:/
+docker cp rt1-eth0-st-script $router1:/
+docker cp rt1-unicast-st-script $router1:/
+docker cp rt1-rt2-clean $router2:/
+docker cp rt2-eth0-st-script $router2:/
+docker cp rt2-unicast-st-script $router2:/
+
+echo -e "\nexecuting the scripts:"
+
+docker exec $host1 /bin/bash /h1-eth0-st-script
+docker exec $host2 /bin/bash /h2-eth0-st-script
+docker exec $router1 /bin/bash /rt1-rt2-clean
+docker exec $router1 /bin/bash /rt1-eth0-st-script
+docker exec $router1 /bin/bash /rt1-unicast-st-script
+docker exec $router2 /bin/bash /rt1-rt2-clean
+docker exec $router2 /bin/bash /rt2-eth0-st-script
+docker exec $router2 /bin/bash /rt2-unicast-st-script
+
+echo -e "\nhost1 eth0:"
+docker exec $host1 ifconfig eth0
+echo "host2 eth0:"
+docker exec $host2 ifconfig eth0
+echo "router1 vxlan10:"
+docker exec $router1 ip -d link show vxlan10
+echo "router2 vxlan10:"
+docker exec $router2 ip -d link show vxlan10
