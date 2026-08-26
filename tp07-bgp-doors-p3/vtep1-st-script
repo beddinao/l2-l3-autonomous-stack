@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ip addr add 1.1.1.2/32 dev lo
+ip addr add 10.0.1.2/30 dev eth0
+ip link add br0 type bridge
+ip link add vxlan10 type vxlan id 10 dstport 4789
+ip link set eth1 master br0
+ip link set vxlan10 master br0
+ip link set lo up && ip link set eth0 up && ip link set eth1 up && ip link set br0 up && ip link set vxlan10 up
+
+vtysh -c 'configure terminal' \
+  -c 'router ospf' \
+  -c 'network 1.1.1.2/32 area 0' \
+  -c 'network 10.0.1.0/30 area 0' \
+  -c 'router bgp 1' \
+  -c 'bgp router-id 1.1.1.2' \
+  -c 'neighbor 1.1.1.1 remote-as 1' \
+  -c 'neighbor 1.1.1.1 update-source lo' \
+  -c 'address-family l2vpn evpn' \
+  -c 'neighbor 1.1.1.1 activate' \
+  -c 'advertise-all-vni'

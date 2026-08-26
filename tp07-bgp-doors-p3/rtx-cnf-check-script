@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "==== router $1 working proof:"
+
+echo -e "\napplied configs:"
+vtysh -c "show running-config"
+
+echo -e "\nOSPF neighbors:"
+vtysh -c "show ip ospf neighbor"
+
+echo -e "\nOSPF routing table:"
+vtysh -c "show ip route ospf"
+
+echo -e "\nBGP configs summary:"
+vtysh -c "show bgp summary"
+
+echo -e "\nBGP EVPN summary:"
+vtysh -c "show bgp l2vpn evpn summary"
+
+echo -e "\nEVPN MAC addressess:"
+vtysh -c "show bgp l2vpn evpn"
